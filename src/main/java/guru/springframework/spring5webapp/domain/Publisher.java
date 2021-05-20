@@ -1,4 +1,4 @@
-package guru.springframework.spring5webapp.model;
+package guru.springframework.spring5webapp.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -20,13 +20,17 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    private String address;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
+
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
 
 
 
-    public Publisher(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
 }
